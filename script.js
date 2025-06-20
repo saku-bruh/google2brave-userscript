@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Google2Brave
 // @namespace    https://github.com/saku-bruh/google2brave-userscript
-// @version      1.0
+// @version      1.1
 // @description  Automatically redirects google to brave search
 // @author       saku
 // @match        https://www.google.*/*
@@ -13,17 +13,24 @@
 (function () {
   'use strict';
 
-  const url = new URL(location.href);
-  if (!url.searchParams.has('q')) return;
+  const safePath   = /^(?:\/(?:search|webhp)?|\/?$|\/#)/;
+  if (!safePath.test(location.pathname)) return;
 
-  if (url.searchParams.has('tbm')) return;
+  const src = new URL(location.href);
+  const query = src.searchParams.get('q');
 
-  const brave = new URL('https://search.brave.com/search');
-  brave.searchParams.set('q', url.searchParams.get('q'));
+  let dest;
+  if (query) {
+    const brave = new URL('https://search.brave.com/search');
+    brave.searchParams.set('q', query);
 
-  if (url.searchParams.has('hl')) {
-    brave.searchParams.set('lang', url.searchParams.get('hl'));
+    if (src.searchParams.has('hl')) {
+      brave.searchParams.set('lang', src.searchParams.get('hl'));
+    }
+    dest = brave.toString();
+  } else {
+    dest = 'https://search.brave.com/';
   }
 
-  location.replace(brave.toString());
+  location.replace(dest);
 })();
