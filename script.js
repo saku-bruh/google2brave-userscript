@@ -3,7 +3,8 @@
 // @namespace    https://github.com/saku-bruh/google2brave-userscript
 // @version      1.2
 // @description  Automatically redirects Google Search (now with web, images, news, videos redirect support) to Brave Search
-// @author       saku
+// @license      MIT
+// @author       saku-bruh (sakmaballs on greasyfork)
 // @match        https://www.google.*/*
 // @match        https://google.*/*
 // @run-at       document-start
