@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         Google2Brave
 // @namespace    https://github.com/saku-bruh/google2brave-userscript
-// @version      1.3.0
+// @version      1.3.1
 // @description  Redirect Google Search (web/images/news/videos) to Brave Search
 // @license      MIT
 // @author       saku-bruh (sakmaballs on greasyfork)
-// @match        *://www.google.com/*
+// @match        *://www.google.com
+// @match        *://www.google.com/search?q=*
 // @match        *://*.bing.com/*
 // @match        *://*.duckduckgo.com/*
 // @match        *://lite.duckduckgo.com/*
